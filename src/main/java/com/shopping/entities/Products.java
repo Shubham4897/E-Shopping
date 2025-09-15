@@ -4,6 +4,7 @@ package com.shopping.entities;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -13,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -58,6 +60,10 @@ public class Products {
  	@OneToMany(mappedBy = "products")  
  	@JsonIgnore
     private List<Cart> carts;
+ 	
+ 	@OneToOne(mappedBy = "products")
+ 	@JsonIgnore
+ 	private ProductOrder prodorder;
 
 	public Long getProductId() {
 		return productId;
@@ -177,6 +183,14 @@ public class Products {
 
 	public void setCarts(List<Cart> carts) {
 		this.carts = carts;
+	}
+
+	public ProductOrder getProdorder() {
+		return prodorder;
+	}
+
+	public void setProdorder(ProductOrder prodorder) {
+		this.prodorder = prodorder;
 	}
  	
  	

@@ -13,30 +13,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.shopping.entities.ProductOrder;
-import com.shopping.entities.dto.RequestOrderDTO;
-import com.shopping.service.OrderService;
+import com.shopping.entities.OrderAddress;
+import com.shopping.service.OrderAddressService;
 
 @RestController
-@RequestMapping("/api/order")
-public class OrderController {
+@RequestMapping("/api/order-address")
+public class OrderAddressController {
+	
 	@Autowired
-	private OrderService orderservice;
+	private OrderAddressService orderservicerepo;
+	
 	@GetMapping("/list")
-	public List<ProductOrder> orderList(){
-		return orderservice.getOrderList();
+	public List<OrderAddress> getAddressList(){
+		return orderservicerepo.getAddressList();
 	}
 	@PostMapping("/save")
-	public ResponseEntity<?> createOrder(@RequestBody RequestOrderDTO order){
-		return orderservice.saveOrder(order);
+	public ResponseEntity<?> createAddress(@RequestBody OrderAddress address){
+		return orderservicerepo.saveaddress(address);
 	}
-	@PutMapping("/update/{id}")
-	public ResponseEntity<?> modifyOrder(@PathVariable Long id, @RequestBody RequestOrderDTO order){
-		return orderservice.updateOrder(id,order);
+	@PutMapping("/update")
+	public ResponseEntity<?> modifyAddress(@PathVariable Long id, @RequestBody OrderAddress address){
+		return orderservicerepo.updateAddress(id, address);
 	}
-	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<?> removeOrder(@PathVariable Long id){
-		return orderservice.deleteOrder(id);
+	@DeleteMapping("/delete")
+	public ResponseEntity<?> removeAddress(@PathVariable Long id){
+		return orderservicerepo.deleteaddress(id);
 	}
-
 }
